@@ -17,6 +17,66 @@ Person::operator int(){
     return data;
 }
 
+void learning_dynamic_cast()
+{
+    std::cout<<"*******************Dynamic Cast*********************************************"<<std::endl<<std::endl;
+    class Base
+    {
+        public:
+        virtual void print()
+        {
+            std::cout<<"Base"<<std::endl;
+        }
+    };
+
+    class Derived: public Base
+    {
+        public:
+        void print() override
+        {
+            std::cout<<"Derived"<<std::endl;
+        }
+    };
+
+    Base* b=new Derived;
+    b->print();                                 //will call Derived class print function
+
+    Derived* d=dynamic_cast<Derived*>(b);       //dynamic_cast is used to convert base class pointer to derived class pointer
+    if(d)
+    {
+        d->print();             //Derived
+    }
+    else
+    {
+        std::cout<<"NULL"<<std::endl;
+    }
+
+    Base* b2=new Base;
+    Derived* d2=dynamic_cast<Derived*>(b2);       //dynamic_cast is used to convert base class pointer to derived class pointer
+    if(d2)
+    {
+        d2->print();             //Derived
+    }
+    else
+    {
+        std::cout<<"NULL"<<std::endl;
+    }
+
+
+    std:cout<<"****incorrect way of using dynamic_cast****"<<std::endl;
+    Base* b3=new Base;
+    Derived* d3=dynamic_cast<Derived*>(b3);       //dynamic_cast is used to convert base class pointer to derived class pointer
+    if(d3)
+    {
+        d3->print();             //Derived
+    }
+    else
+    {
+        std::cout<<"NULL"<<std::endl;
+    }
+    
+}
+
 
 int main()
 {    
@@ -84,6 +144,7 @@ int main()
 
     std::cout<<"*******************User defined to User Define type conversion*********************************************"<<std::dec<<std::endl<<std::endl;
     
+    learning_dynamic_cast();
 
     return 0;
 }
